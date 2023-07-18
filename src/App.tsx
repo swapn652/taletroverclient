@@ -36,6 +36,7 @@ import {
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
+import LandingPage from "./pages/landing";
 
 function App() {
   return (
@@ -79,6 +80,10 @@ function App() {
               }}
             >
               <Routes>
+              <Route
+                    index
+                    element={<LandingPage/>}
+                  />
                 <Route
                   element={
                     <Authenticated fallback={<CatchAllNavigate to="/login" />}>
@@ -88,10 +93,7 @@ function App() {
                     </Authenticated>
                   }
                 >
-                  <Route
-                    index
-                    element={<NavigateToResource resource="blog_posts" />}
-                  />
+                  
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
                     <Route path="create" element={<BlogPostCreate />} />
