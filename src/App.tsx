@@ -1,5 +1,6 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import { AppIcon } from "./components/app-icon";
 
 import {
   ErrorComponent,
