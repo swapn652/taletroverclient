@@ -1,12 +1,15 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import {
+  Box,
+  Stack,
+  Typography,
+  Button
+} from "@mui/material"
 import { Link } from "react-router-dom";
 import { useGetIdentity } from "@refinedev/core";
 import { IUser } from "../../components/header";
 import { AppIcon } from "../../components/app-icon";
+import BookCard from "../../components/book-card";
 
 const LandingPage = () => {
   const { data: user } = useGetIdentity<IUser>();
@@ -115,6 +118,8 @@ const LandingPage = () => {
           )}
         </Box>
       </Box>
+
+      <BookCard imageSrc="/taletrove-logo.png" title="IT"/>
 
       {/* Footer Section */}
       <Box
