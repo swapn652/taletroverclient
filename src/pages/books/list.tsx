@@ -31,7 +31,7 @@ export const BooksList: React.FC<IResourceComponentsProps> = () => {
       ))}
       {/* Create New Book Button */}
       <div style={{ position: "absolute", bottom: "-30px", left: "20px" }}>
-        <Link to="/addBook">
+        <Link to="/books/create">
           <Button variant="contained" color="primary">
             Create New Book
           </Button>

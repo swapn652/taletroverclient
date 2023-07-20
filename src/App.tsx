@@ -40,6 +40,7 @@ import { Register } from "./pages/register";
 import LandingPage from "./pages/landing";
 import { BooksList } from "./pages/books/list";
 import BookShow from "./pages/books/show";
+import BookCreate from "./pages/books/create";
 
 function App() {
   return (
@@ -118,6 +119,7 @@ function App() {
                   </Route>
                   <Route path="/books">
                     <Route index element={<BooksList/>} />
+                    <Route path="create" element={<BookCreate/>} />
                     <Route path="show/:id" element={ <BookShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
