@@ -45,9 +45,9 @@ const BookShow: React.FC = () => {
   };
 
   useEffect(() => {
-    //@ts-ignore
+     //@ts-ignore
     if (data && data.data && data.data.author) {
-        //@ts-ignore
+         //@ts-ignore
       fetchAuthorData(data.data.author);
     }
   }, [data]);
@@ -60,7 +60,7 @@ const BookShow: React.FC = () => {
     return <div>Error fetching data.</div>;
   }
 
-  //@ts-ignore
+   //@ts-ignore
   const { title, description, story } = data.data; // Access data using data.data
 
   return (
@@ -68,8 +68,9 @@ const BookShow: React.FC = () => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "center", // Center the title horizontally
           alignItems: "center",
+          flexDirection: "column", // Align items vertically
         }}
       >
         <Box>
