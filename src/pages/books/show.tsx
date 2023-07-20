@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useOne, GetOneResponse } from "@refinedev/core";
 import { CircularProgress, Box, Typography, Paper } from "@mui/material";
@@ -19,7 +19,38 @@ interface Book {
 const BookShow: React.FC = () => {
     //@ts-ignore
   const { id } = useParams<BookShowParams>();
-  const { data, isLoading, isError } = useOne<GetOneResponse<Book>>({ resource: "books", id });
+  const { data, isLoading, isError } = useOne<GetOneResponse<Book>>({
+    resource: "books",
+    id,
+  });
+
+  const [isAuthorLoading, setIsAuthorLoading] = useState(true);
+  const [isAuthorError, setIsAuthorError] = useState(false);
+  const [authorData, setAuthorData] = useState<any>(null);
+
+  const fetchAuthorData = async (authorId: string) => {
+    try {
+      console.log("Fetching author data...");
+      setIsAuthorLoading(true);
+      const response = await fetch(`http://localhost:8000/author/${authorId}`);
+      const data = await response.json();
+      console.log("Author data received:", data);
+      setAuthorData(data);
+      setIsAuthorLoading(false);
+    } catch (error) {
+      console.error("Error fetching author data:", error);
+      setIsAuthorError(true);
+      setIsAuthorLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    //@ts-ignore
+    if (data && data.data && data.data.author) {
+        //@ts-ignore
+      fetchAuthorData(data.data.author);
+    }
+  }, [data]);
 
   if (isLoading) {
     return <CircularProgress />;
@@ -30,16 +61,20 @@ const BookShow: React.FC = () => {
   }
 
   //@ts-ignore
-  const { title, author, description, story } = data.data; // Access data using data.data
+  const { title, description, story } = data.data; // Access data using data.data
 
   return (
     <Box p={2}>
       <Typography variant="h4" gutterBottom>
         {title}
       </Typography>
-      <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-        Author: {author}
-      </Typography>
+      {authorData ? (
+        <Typography variant="subtitle1" color="textSecondary" gutterBottom>
+          Author: {authorData.email}
+        </Typography>
+      ) : (
+        <div>Loading author data...</div>
+      )}
       <Paper elevation={3} sx={{ p: 2, mt: 2 }}>
         <Typography variant="body1">{description}</Typography>
       </Paper>
