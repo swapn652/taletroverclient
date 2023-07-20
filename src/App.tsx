@@ -38,6 +38,7 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import LandingPage from "./pages/landing";
+import { BooksList } from "./pages/books/list";
 
 function App() {
   return (
@@ -49,31 +50,38 @@ function App() {
           <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
           <RefineSnackbarProvider>
             <Refine
-              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+              dataProvider={dataProvider("http://localhost:8000")}
               notificationProvider={notificationProvider}
               routerProvider={routerBindings}
               authProvider={authProvider}
               resources={[
+                // {
+                //   name: "blog_posts",
+                //   list: "/blog-posts",
+                //   create: "/blog-posts/create",
+                //   edit: "/blog-posts/edit/:id",
+                //   show: "/blog-posts/show/:id",
+                //   meta: {
+                //     canDelete: true,
+                //   },
+                // },
+                // {
+                //   name: "categories",
+                //   list: "/categories",
+                //   create: "/categories/create",
+                //   edit: "/categories/edit/:id",
+                //   show: "/categories/show/:id",
+                //   meta: {
+                //     canDelete: true,
+                //   },
+                // },
                 {
-                  name: "blog_posts",
-                  list: "/blog-posts",
-                  create: "/blog-posts/create",
-                  edit: "/blog-posts/edit/:id",
-                  show: "/blog-posts/show/:id",
-                  meta: {
-                    canDelete: true,
-                  },
-                },
-                {
-                  name: "categories",
-                  list: "/categories",
-                  create: "/categories/create",
-                  edit: "/categories/edit/:id",
-                  show: "/categories/show/:id",
-                  meta: {
-                    canDelete: true,
-                  },
-                },
+                  name: "books",
+                  list: "/books",
+                  create: "/addBook",
+                  edit: "/editBook/:id",
+                  show: "/books/:id"
+                }
               ]}
               options={{
                 syncWithLocation: true,
@@ -106,6 +114,9 @@ function App() {
                     <Route path="create" element={<CategoryCreate />} />
                     <Route path="edit/:id" element={<CategoryEdit />} />
                     <Route path="show/:id" element={<CategoryShow />} />
+                  </Route>
+                  <Route path="/books">
+                    <Route index element={<BooksList/>} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
