@@ -25,7 +25,7 @@ export const BooksList: React.FC<IResourceComponentsProps> = () => {
   return (
     <div style={{ display: "grid", gap: "20px", gridTemplateColumns: "repeat(auto-fit, 200px)" }}>
       {data.data.map((book: any) => (
-        <BookCard key={book._id} imageSrc="/taletrove-logo.png" title={book.title} />
+        <BookCard bookId={book._id} key={book._id} imageSrc="/taletrove-logo.png" title={book.title} />
       ))}
     </div>
   );

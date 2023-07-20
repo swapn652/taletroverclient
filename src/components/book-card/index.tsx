@@ -7,14 +7,18 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Link, useNavigate } from "react-router-dom";
 
 interface BookCardProps {
+  key: any;
   imageSrc: string;
-  title: string;
+  title: any;
+  bookId: string;
 }
 
-const BookCard: React.FC<BookCardProps> = ({ imageSrc, title }) => {
+const BookCard: React.FC<BookCardProps> = ({ key, imageSrc, title, bookId }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate(); // Add the useNavigate hook
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -22,6 +26,11 @@ const BookCard: React.FC<BookCardProps> = ({ imageSrc, title }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleShow = () => {
+    setAnchorEl(null);
+    navigate(`/books/show/${bookId}`); // Programmatically navigate to the individual book show page
   };
 
   return (
@@ -75,11 +84,10 @@ const BookCard: React.FC<BookCardProps> = ({ imageSrc, title }) => {
       >
         <MenuItem onClick={handleClose}>Edit</MenuItem>
         <MenuItem onClick={handleClose}>Delete</MenuItem>
-        <MenuItem onClick={handleClose}>Show</MenuItem>
+        <MenuItem onClick={handleShow}>Show</MenuItem> {/* Use the handleShow function */}
       </Menu>
     </Card>
   );
 };
 
 export default BookCard;
-

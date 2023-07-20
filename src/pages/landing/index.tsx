@@ -119,7 +119,7 @@ const LandingPage = () => {
         </Box>
       </Box>
 
-      <BookCard imageSrc="/taletrove-logo.png" title="IT"/>
+      {/* <BookCard imageSrc="/taletrove-logo.png" title="IT"/> */}
 
       {/* Footer Section */}
       <Box
