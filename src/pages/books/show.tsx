@@ -65,16 +65,39 @@ const BookShow: React.FC = () => {
 
   return (
     <Box p={2}>
-      <Typography variant="h4" gutterBottom>
-        {title}
-      </Typography>
-      {authorData ? (
-        <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-          Author: {authorData.email}
-        </Typography>
-      ) : (
-        <div>Loading author data...</div>
-      )}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Box>
+          <Typography variant="h4" gutterBottom>
+            {title}
+          </Typography>
+          {authorData ? (
+            <Typography variant="subtitle1" color="textSecondary" gutterBottom>
+              Author: {authorData.email}
+            </Typography>
+          ) : (
+            <div>Loading author data...</div>
+          )}
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            border: "2px solid #000000",
+            borderRadius: 8,
+            padding: "4px 8px",
+          }}
+        >
+          <Typography variant="body2" color="textSecondary">
+            Rating: 4.5/5
+          </Typography>
+        </Box>
+      </Box>
       <Paper elevation={3} sx={{ p: 2, mt: 2 }}>
         <Typography variant="body1">{description}</Typography>
       </Paper>
@@ -89,9 +112,11 @@ const BookShow: React.FC = () => {
             mt: 2,
             backgroundColor: "#FFEDC1", // Yellow background color
             color: "#000000", // Black text color
+            fontFamily: "Indie Flower, cursive", // Handwritten font
+            fontSize: "1.1rem", // Adjust the font size as needed
           }}
         >
-          <Typography variant="body1">{story}</Typography>
+          {story}
         </Paper>
       </Box>
     </Box>
