@@ -39,6 +39,7 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import LandingPage from "./pages/landing";
 import { BooksList } from "./pages/books/list";
+import BookShow from "./pages/books/show";
 
 function App() {
   return (
@@ -117,6 +118,7 @@ function App() {
                   </Route>
                   <Route path="/books">
                     <Route index element={<BooksList/>} />
+                    <Route path="show/:id" element={ <BookShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
